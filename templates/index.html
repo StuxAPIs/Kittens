@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>{{ config.title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link href="{{ domain }}assets/modesta.css?v=3.0.0" type="text/css" rel="stylesheet">
+	<link href="{{ domain }}assets/twemoji.css?v=3.0.0" type="text/css" rel="stylesheet">
+
+    <meta name="theme-color" content="#d35400">
+    <meta content="{{ domain }}assets/profile.png" property="og:image" />
+    <link rel="icon" type="image/x-icon" href="{{ domain }}assets/profile.png">
+    <meta content="{{ config.title }}" property="og:title" />
+
+    <meta content="{{ config.description }}" property="og:description" />
+    <meta content="{{ config.description }}" name="description" />
+  </head>
+  <body class="dark-theme github">
+    <section class="fullscreen">
+      <div class="background" style="background-image: url('{{ background }}');"></div>
+      <div class="center-object">
+        <section class="me">
+          <h1 style="text-align: center;" class="title honey-text"><i class="emoji emoji-lg twa-cat"></i><br>{{ config.title }}</h1>
+          <span style="text-align: center;" class="undertitle">
+			<span style="font-size: 2.5rem;">{{ config.description }}</span>
+			<br>
+			<span style="font-size: 1.7rem;"><i>Images in API: <b class="pinewood-text">{{ images }}</b> | Powered by <b class="pinewood-text">StuxAPIs</b></i></span>
+		  </span>
+        </section>
+        <div class="buttons">
+          <a href="random" class="btn animation orange-bg" target="_blank">Random Kitten</a>
+          <a href="random.json" class="btn animation orange-bg" target="_blank">Random Kitten [ JSON ]</a>
+          <!--<a href="https://github.com/StuxDev/KittensAPI" class="btn animation github-bg" target="_blank">GitHub</a>-->
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
