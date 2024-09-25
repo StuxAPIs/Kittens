@@ -65,9 +65,11 @@ async def template_images(filename):
 
 @app.route("/random")
 async def randomkitten():
-    return redirect(
-        domain + random.choice(cache_images)
-    )
+    return redirect (domain + random.choice(cache_images))
+
+@app.route("/randomfile")
+async def randomfilekitten():
+    return await send_from_directory(config.imagefolder, random.choice(cache_images))
 
 @app.route("/randomaf")
 async def randomafkitten():
