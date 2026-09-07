@@ -3,6 +3,11 @@
 All notable changes to the Kittens API are documented here. Versions follow
 [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PATCH).
 
+## v1.0.1
+
+### Changed
+- `README.md`'s "StuxAPIs is part of the Stux.Group Brand of Companies" line now includes the Stux.Group icon inline
+
 ## v1.0.0
 
 ### Added
