@@ -1,0 +1,33 @@
+{% extends "legal/_base.html" %}
+{% block title %}Boring Legal Stuff{% endblock %}
+{% block content %}
+<h1>Boring Legal Stuff</h1>
+<p>The stuff nobody reads but everybody needs. All of it, in one place, in plain English.</p>
+
+<div class="legal-grid">
+  <a href="/legal/privacy" class="legal-card">
+    <div class="legal-card-name">Privacy Policy</div>
+    <div class="legal-card-desc">What we collect (almost nothing) and how requests work.</div>
+  </a>
+  <a href="/legal/terms" class="legal-card">
+    <div class="legal-card-name">Terms and Ethics</div>
+    <div class="legal-card-desc">Use the API responsibly, that's really all we ask.</div>
+  </a>
+  <a href="/legal/cookies" class="legal-card">
+    <div class="legal-card-name">Cookies Policy</div>
+    <div class="legal-card-desc">No cookies, no tracking, nothing to consent to.</div>
+  </a>
+  <a href="/legal/imprint" class="legal-card">
+    <div class="legal-card-name">Imprint</div>
+    <div class="legal-card-desc">Who operates the Kittens API and how to reach us.</div>
+  </a>
+  <a href="/legal/disclaimer" class="legal-card">
+    <div class="legal-card-name">Disclaimer</div>
+    <div class="legal-card-desc">Copyright, accuracy, accessibility and security.</div>
+  </a>
+  <a href="/legal/opt-out" class="legal-card">
+    <div class="legal-card-name">Opt-Out Preferences</div>
+    <div class="legal-card-desc">There's nothing to sell, so nothing to opt out of.</div>
+  </a>
+</div>
+{% endblock %}

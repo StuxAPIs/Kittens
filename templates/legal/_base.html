@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>{% block title %}Legal{% endblock %} - {{ config.title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link href="{{ domain }}assets/modesta.css?v=3.0.0" type="text/css" rel="stylesheet">
+    <link href="{{ domain }}assets/twemoji.css?v=3.0.0" type="text/css" rel="stylesheet">
+    <meta name="theme-color" content="#d35400">
+    <link rel="icon" type="image/x-icon" href="{{ domain }}assets/profile.png">
+    <style>
+      body.legal-body { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; line-height: 1.6; }
+      body.legal-body a { color: #d35400; }
+      body.legal-body h1 { margin-bottom: .25rem; }
+      body.legal-body .legal-back { display: inline-block; margin-bottom: 1.5rem; opacity: .8; }
+      .legal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+      .legal-card { display: block; padding: 1rem 1.25rem; border-radius: .5rem; border: 1px solid rgba(128,128,128,.3); text-decoration: none; color: inherit; }
+      .legal-card:hover { border-color: #d35400; }
+      .legal-card-name { font-weight: 600; margin-bottom: .35rem; }
+      .legal-card-desc { font-size: .85rem; opacity: .75; }
+      footer.legal-footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
+    </style>
+  </head>
+  <body class="dark-theme github legal-body">
+    <a class="legal-back" href="/legal">&larr; Back to Boring Legal Stuff</a>
+    {% block content %}{% endblock %}
+    <footer class="legal-footer">
+      <p>Questions about any of this? Contact <a href="mailto:contact@stuxapis.net">contact@stuxapis.net</a>.</p>
+      <p><a href="/">&larr; Back to {{ config.title }}</a></p>
+    </footer>
+  </body>
+</html>

@@ -5,7 +5,9 @@ import random
 import secrets
 
 from collections import namedtuple
-from quart import Quart, jsonify, send_from_directory, send_file, render_template, redirect
+from quart import Quart, jsonify, send_from_directory, send_file, render_template, redirect, abort
+
+LEGAL_PAGES = ("privacy", "terms", "cookies", "imprint", "disclaimer", "opt-out")
 
 # Checking if you have config.json on your API
 try:
@@ -39,6 +41,18 @@ async def index():
         'index.html', config=config,
         background=random.choice(cache_images), images=len(cache_images)
     )
+
+
+@app.route("/legal")
+async def legal():
+    return await render_template("legal/index.html", config=config, domain=domain)
+
+
+@app.route("/legal/<slug>")
+async def legal_page(slug):
+    if slug not in LEGAL_PAGES:
+        abort(404)
+    return await render_template(f"legal/{slug}.html", config=config, domain=domain)
 
 
 # This is just for the memes, the holy 418 error \o/
