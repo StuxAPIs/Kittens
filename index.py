@@ -1,13 +1,19 @@
 import os
+import re
 import sys
 import json
 import random
 import secrets
+import datetime
 
+import markdown as markdown_lib
 from collections import namedtuple
 from quart import Quart, jsonify, send_from_directory, send_file, render_template, redirect, abort
 
 LEGAL_PAGES = ("privacy", "terms", "cookies", "imprint", "disclaimer", "opt-out")
+
+with open("VERSION.md", encoding="utf-8") as f:
+    VERSION = f.read().strip()
 
 # Checking if you have config.json on your API
 try:
@@ -39,7 +45,25 @@ def randomize(dir, checker):
 async def index():
     return await render_template(
         'index.html', config=config,
-        background=random.choice(cache_images), images=len(cache_images)
+        background=random.choice(cache_images), images=len(cache_images),
+        version=VERSION, year=datetime.date.today().year
+    )
+
+
+@app.route("/changelog")
+async def changelog():
+    with open("CHANGELOG.md", encoding="utf-8") as f:
+        raw = f.read()
+
+    # Drop the leading "# Changelog" title and intro prose - the page
+    # already has its own header, and the version/date headings are what
+    # actually matter here.
+    body = re.sub(r"^# Changelog\n.*?(?=\n## )", "", raw, flags=re.DOTALL)
+    changelog_html = markdown_lib.markdown(body, extensions=["fenced_code"])
+
+    return await render_template(
+        "changelog.html", config=config, domain=domain,
+        changelog_html=changelog_html
     )
 
 

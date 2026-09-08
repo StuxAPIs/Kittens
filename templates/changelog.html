@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>{% block title %}Legal{% endblock %} - {{ config.title }}</title>
+    <title>Changelog - {{ config.title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <link href="{{ domain }}assets/kittens.css?v=1.0.0" type="text/css" rel="stylesheet">
@@ -8,11 +8,13 @@
     <link rel="icon" type="image/x-icon" href="{{ domain }}assets/profile.png">
   </head>
   <body class="legal-body">
-    <a class="legal-back" href="/legal">&larr; Back to Boring Legal Stuff</a>
-    {% block content %}{% endblock %}
+    <a class="legal-back" href="/">&larr; Back to {{ config.title }}</a>
+    <h1>Changelog</h1>
+    <div class="changelog-body">
+      {{ changelog_html | safe }}
+    </div>
     <footer class="legal-footer">
-      <p>Questions about any of this? Contact <a href="mailto:contact@stuxapis.net">contact@stuxapis.net</a>.</p>
-      <p><a href="/">&larr; Back to {{ config.title }}</a></p>
+      <p><a href="/legal">Boring Legal Stuff</a></p>
     </footer>
   </body>
 </html>

@@ -5,6 +5,15 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.3.0
+
+### Added
+- `/changelog` — renders this file (minus the leading title/intro) as HTML via the new `markdown` dependency, styled to match the legal pages
+- Homepage footer now shows a copyright line and the running version (read from `VERSION.md` at startup), linked to `/changelog` — replacing the old bare "Boring Legal Stuff" link
+
+### Changed
+- Moved the legal pages' shared container/typography styles out of `templates/legal/_base.html`'s embedded `<style>` block and into `templates/assets/kittens.css`, so the new changelog page (which isn't part of the legal-page block hierarchy) can reuse the same layout
+
 ## v1.2.0
 
 ### Added
