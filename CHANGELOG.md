@@ -5,6 +5,12 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.6.0
+
+### Added
+- `?v={{ version }}` cache-busting extended to every asset reference, not just `kittens.css`: `logo.svg` and `profile.png` (favicon/`og:image`, across all three page templates) now carry it too
+- `kittens.css` is now served through a dedicated route (`/assets/css/kittens.css`) that renders it via Jinja instead of as a static file, so the Fredoka `@font-face` URL embedded *inside* the CSS can also carry `?v={{ version }}` — the one asset reference that couldn't be versioned just by editing HTML templates, since it lives inside the CSS file itself
+
 ## v1.5.4
 
 ### Fixed

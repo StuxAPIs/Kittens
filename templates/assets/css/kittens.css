@@ -7,7 +7,7 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('../fonts/Fredoka.woff2') format('woff2');
+  src: url('../fonts/Fredoka.woff2?v={{ version }}') format('woff2');
 }
 
 * { box-sizing: border-box; }
