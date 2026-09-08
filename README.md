@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="templates/assets/logo.svg" width="300" alt="Kittens">
+  <img src="templates/assets/images/logo.svg" width="300" alt="Kittens">
 </p>
 
 # Kittens
@@ -19,6 +19,9 @@ The project is fully open source.
 ## Website
 
 - Legal: [/legal](https://kittens.stuxapis.net/legal)
+- Changelog: [/changelog](https://kittens.stuxapis.net/changelog) — renders [CHANGELOG.md](CHANGELOG.md) as HTML
+- Styling: a small self-contained stylesheet (`templates/assets/css/kittens.css`), no external framework
+- Font: [Fredoka](https://fonts.google.com/specimen/Fredoka), self-hosted under `templates/assets/fonts/` (SIL Open Font License, see `OFL.txt` there)
 
 ## Local development
 

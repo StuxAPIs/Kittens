@@ -5,6 +5,15 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.4.2
+
+### Fixed
+- `README.md`'s header logo pointed at `templates/assets/logo.svg`, which moved to `templates/assets/images/logo.svg` in the v1.4.0 asset reorg — the `.md` file wasn't caught by that pass since it only swept `.html` templates, so the logo stopped rendering on the GitHub repo page
+
+### Changed
+- `README.md`'s "Website" section updated to reflect the site as it actually is now: added the `/changelog` page link, and notes on the self-hosted `kittens.css` stylesheet and self-hosted Fredoka font (previously undocumented)
+- `config.json.example`'s `description` field ("Get random pictures of kittens") reworded to "An API that provides random images of kittens", matching `README.md`'s tagline. **Note:** this only updates the template — the actual `config.json` on the production server is gitignored and won't pick this up automatically; it needs updating there by hand (same as the `title` field previously)
+
 ## v1.4.1
 
 ### Fixed
