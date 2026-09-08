@@ -4,7 +4,7 @@
 
 # Kittens
 
-An API that provides random images of kittens. Built & Maintained by [StuxAPIs](https://github.com/StuxAPIs), Hosted by [Stuxedo](https://stuxedo.com).
+An API that provides random images of kittens. Built & Maintained by [StuxAPIs](https://stuxapis.net), Hosted by [Stuxedo](https://stuxedo.com).
 
 - Live: https://kittens.stuxapis.net
 - `GET /random` — redirect to a random kitten image
@@ -52,5 +52,5 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-*Built & Maintained by <img src="https://github.com/StuxAPIs.png" height="14" alt="StuxAPIs" valign="middle"> [StuxAPIs](https://github.com/StuxAPIs), Hosted by <img src="https://github.com/Stuxedo.png" height="14" alt="Stuxedo" valign="middle"> [Stuxedo](https://stuxedo.com).    
+*Built & Maintained by <img src="https://github.com/StuxAPIs.png" height="14" alt="StuxAPIs" valign="middle"> [StuxAPIs](https://stuxapis.net), Hosted by <img src="https://github.com/Stuxedo.png" height="14" alt="Stuxedo" valign="middle"> [Stuxedo](https://stuxedo.com).    
 StuxAPIs is a part of the <img src="https://media.stux.group/global/icon.png" height="14" alt="Stux.Group" valign="middle"> Stux.Group brand of businesses.*

@@ -5,6 +5,11 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.5.2
+
+### Changed
+- `README.md`'s two "Built & Maintained by StuxAPIs" links (tagline and footer disclaimer) now also point to [stuxapis.net](https://stuxapis.net), matching the homepage change in v1.5.1
+
 ## v1.5.1
 
 ### Changed
