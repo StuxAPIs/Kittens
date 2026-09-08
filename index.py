@@ -62,21 +62,21 @@ async def changelog():
     changelog_html = markdown_lib.markdown(body, extensions=["fenced_code"])
 
     return await render_template(
-        "changelog.html", config=config, domain=domain,
+        "changelog.html", config=config, domain=domain, version=VERSION,
         changelog_html=changelog_html
     )
 
 
 @app.route("/legal")
 async def legal():
-    return await render_template("legal/index.html", config=config, domain=domain)
+    return await render_template("legal/index.html", config=config, domain=domain, version=VERSION)
 
 
 @app.route("/legal/<slug>")
 async def legal_page(slug):
     if slug not in LEGAL_PAGES:
         abort(404)
-    return await render_template(f"legal/{slug}.html", config=config, domain=domain)
+    return await render_template(f"legal/{slug}.html", config=config, domain=domain, version=VERSION)
 
 
 # This is just for the memes, the holy 418 error \o/

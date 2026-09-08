@@ -5,6 +5,12 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.5.3
+
+### Fixed
+- **This is what was actually causing the "site is broken / stylised wrong" and "favicon/profile.png still wrong" reports.** `kittens.css` was linked with a hardcoded `?v=1.0.0` query string that was never bumped across any release since it was introduced in v1.2.0 — Cloudflare/the browser kept serving a stale cached copy of the CSS from before v1.5.0 forever, since the cache key (the URL) never changed even though the file's actual content kept changing underneath it. Confirmed directly: the browser's parsed stylesheet had 33 rules and was missing `.site-footer` entirely, while the origin file (verified via a cache-busted fetch) was the correct, current 175-line file all along — the server-side files (`profile.png` included) were never actually wrong, they just weren't being fetched
+- All three templates (`index.html`, `legal/_base.html`, `changelog.html`) now link `kittens.css?v={{ version }}` instead of a hardcoded string, so every release automatically busts the cache going forward — `legal()`, `legal_page()`, and `changelog()` now also pass `version=VERSION` to their templates (previously only `index()` did)
+
 ## v1.5.2
 
 ### Changed
