@@ -97,7 +97,7 @@ async def kitten(filename):
     return await send_from_directory(config.imagefolder, filename)
 
 
-@app.route("/assets/<filename>")
+@app.route("/assets/<path:filename>")
 async def template_images(filename):
     return await send_from_directory("templates/assets", filename)
 

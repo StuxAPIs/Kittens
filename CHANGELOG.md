@@ -5,6 +5,15 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.4.0
+
+### Added
+- Self-hosted [Fredoka](https://fonts.google.com/specimen/Fredoka) (SIL Open Font License, variable weight 400-700, Latin subset) — `templates/assets/fonts/Fredoka.woff2` plus its `OFL.txt` license, wired up via `@font-face` in `kittens.css`. Replaces the default system font stack site-wide; no external Google Fonts request is made
+
+### Changed
+- `templates/assets/` reorganized into `css/`, `fonts/`, and `images/` subfolders instead of one flat directory
+- `/assets/<filename>` route changed to `/assets/<path:filename>` so nested asset paths (e.g. `assets/fonts/Fredoka.woff2`) actually resolve — the previous single-segment route 404'd on anything not directly in `templates/assets/`. This only affects the `/assets/*` prefix; the root-level kitten image routes (`/<filename>`, `/random`, etc.) are untouched and still resolve exactly as before (e.g. `https://kittens.stuxapis.net/ch5brn70egd_kitten.jpeg`)
+
 ## v1.3.0
 
 ### Added
