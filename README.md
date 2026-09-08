@@ -14,12 +14,10 @@ An API that provides random images of kittens. Built & Maintained by [StuxAPIs](
 
 ## Open Source
 
-The project is fully open source. It was originally forked from
-[AlexFlipnote's Coffee API](https://github.com/AlexFlipnote/CoffeeAPI).
+The project is fully open source.
 
 ## Website
 
-- Frameworks: [ModestaCSS](https://github.com/AlexFlipnote/ModestaCSS)
 - Legal: [/legal](https://kittens.stuxapis.net/legal)
 
 ## Local development

@@ -3,8 +3,7 @@
     <title>{{ config.title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <link href="{{ domain }}assets/modesta.css?v=3.0.0" type="text/css" rel="stylesheet">
-	<link href="{{ domain }}assets/twemoji.css?v=3.0.0" type="text/css" rel="stylesheet">
+    <link href="{{ domain }}assets/kittens.css?v=1.0.0" type="text/css" rel="stylesheet">
 
     <meta name="theme-color" content="#d35400">
     <meta content="{{ domain }}assets/profile.png" property="og:image" />
@@ -14,22 +13,23 @@
     <meta content="{{ config.description }}" property="og:description" />
     <meta content="{{ config.description }}" name="description" />
   </head>
-  <body class="dark-theme github">
+  <body>
     <section class="fullscreen">
       <div class="background" style="background-image: url('{{ background }}');"></div>
       <div class="center-object">
         <section class="me">
-          <h1 style="text-align: center;" class="title honey-text"><i class="emoji emoji-lg twa-cat"></i><br>{{ config.title }}</h1>
+          <h1 style="text-align: center;" class="title"><img src="{{ domain }}assets/logo.svg" alt="{{ config.title }}" style="height: 90px; vertical-align: middle;"></h1>
           <span style="text-align: center;" class="undertitle">
 			<span style="font-size: 2.5rem;">{{ config.description }}</span>
 			<br>
-			<span style="font-size: 1.7rem;"><i>Images in API: <b class="pinewood-text">{{ images }}</b> | Built & Maintained by <a class="pinewood-text" href="https://github.com/StuxAPIs">StuxAPIs</a>, Hosted by <a class="pinewood-text" href="https://stuxedo.com">Stuxedo</a></i></span>
+			<span style="font-size: 1.7rem;"><i>Images in API: <b class="accent-text">{{ images }}</b></i></span>
+			<br>
+			<span style="font-size: 1.7rem;"><i>Built & Maintained by <a class="accent-text" href="https://github.com/StuxAPIs">StuxAPIs</a>, Hosted by <a class="accent-text" href="https://stuxedo.com">Stuxedo</a></i></span>
 		  </span>
         </section>
         <div class="buttons">
-          <a href="random" class="btn animation orange-bg" target="_blank">Random Kitten</a>
-          <a href="random.json" class="btn animation orange-bg" target="_blank">Random Kitten [ JSON ]</a>
-          <!--<a href="https://github.com/StuxDev/KittensAPI" class="btn animation github-bg" target="_blank">GitHub</a>-->
+          <a href="random" class="btn animation accent-bg" target="_blank">Random Kitten</a>
+          <a href="random.json" class="btn animation accent-bg" target="_blank">Random Kitten [ JSON ]</a>
         </div>
       </div>
       <footer style="position:absolute;bottom:0;left:0;right:0;text-align:center;padding:1rem;font-size:.85rem;">

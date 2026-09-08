@@ -5,6 +5,19 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.2.0
+
+### Added
+- `templates/assets/kittens.css` — a small, self-contained stylesheet replacing the ModestaCSS/Twemoji framework dependency, covering exactly what the homepage and legal pages actually use (dark theme base, hero layout, buttons, animation keyframe)
+
+### Changed
+- Homepage: the emoji cat icon is now the actual logo (`logo.svg`); "Built & Maintained by StuxAPIs, Hosted by Stuxedo" moved to its own line, after the "Images in API" count instead of sharing a line with it
+- Homepage's accent color (title, links, buttons) now matches the logo's orange (`#d35400`) exactly, instead of ModestaCSS's default honey/orange/pinewood palette (`#eab543`/`#f39c12`/`#fdcb6e`) — classes renamed `honey-text`/`pinewood-text`/`orange-bg` → `accent-text`/`accent-bg` to match
+- `README.md`'s "Open Source"/"Website" sections no longer credit AlexFlipnote's Coffee API fork or ModestaCSS, since neither is used anymore
+
+### Removed
+- `templates/assets/modesta.css`, `modesta3.1.0.css`, `twemoji.css` — no longer referenced by anything
+
 ## v1.1.1
 
 ### Fixed
