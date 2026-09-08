@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="templates/assets/images/logo.svg" width="300" alt="Kittens">
+  <img src="https://global.media.stuxapis.net/kittens/logo.svg" width="300" alt="Kittens">
 </p>
 
 # Kittens
@@ -20,8 +20,9 @@ The project is fully open source.
 
 - Legal: [/legal](https://kittens.stuxapis.net/legal)
 - Changelog: [/changelog](https://kittens.stuxapis.net/changelog) — renders [CHANGELOG.md](CHANGELOG.md) as HTML
-- Styling: a small self-contained stylesheet (`templates/assets/css/kittens.css`), no external framework
-- Font: [Fredoka](https://fonts.google.com/specimen/Fredoka), self-hosted under `templates/assets/fonts/` (SIL Open Font License, see `OFL.txt` there)
+- Styling: a small self-contained stylesheet (`assets/css/kittens.css`), no external framework
+- Font: [Fredoka](https://fonts.google.com/specimen/Fredoka), self-hosted under `assets/fonts/` (SIL Open Font License, see `OFL.txt` there)
+- Branding (`logo.svg`/`icon.png`): hosted on the shared StuxAPIs media CDN at [global.media.stuxapis.net/kittens](https://global.media.stuxapis.net/kittens), not vendored in this repo
 
 ## Local development
 

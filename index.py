@@ -99,15 +99,18 @@ async def kitten(filename):
 
 @app.route("/assets/css/kittens.css")
 async def kittens_css():
-    # Rendered through Jinja (not served as a static file) so the embedded
-    # Fredoka @font-face url can also carry a ?v={{ version }} cache-buster.
-    css = await render_template("assets/css/kittens.css", version=VERSION)
+    # assets/ lives outside templates/, so this is a plain file read with a
+    # manual substitution rather than a Jinja render_template call - just
+    # enough to carry a ?v={{ version }} cache-buster on the embedded
+    # Fredoka @font-face url.
+    with open("assets/css/kittens.css", encoding="utf-8") as f:
+        css = f.read().replace("{{ version }}", VERSION)
     return css, 200, {"Content-Type": "text/css; charset=utf-8"}
 
 
 @app.route("/assets/<path:filename>")
 async def template_images(filename):
-    return await send_from_directory("templates/assets", filename)
+    return await send_from_directory("assets", filename)
 
 @app.route("/random")
 async def randomkitten():

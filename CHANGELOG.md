@@ -5,6 +5,13 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.6.2
+
+### Changed
+- `logo.svg`/`icon.png` (`profile.png` renamed) moved from being vendored locally to the shared CDN at `https://global.media.stuxapis.net/kittens/logo.svg` / `/icon.png` — every template/README reference updated accordingly and no longer carries the `?v=` cache-buster, since cache invalidation for that asset is now the CDN's concern rather than this repo's release version
+- `assets/` moved out of `templates/` to the project root, since it's not Jinja template content — only `templates/assets/css/kittens.css` and `templates/assets/fonts/` survive the move (to `assets/css/` and `assets/fonts/`); `templates/assets/images/` is gone entirely now that those assets live on the CDN. `index.py`'s `/assets/<path:filename>` route now serves from `assets` instead of `templates/assets`, and the `/assets/css/kittens.css` route no longer goes through Jinja's `render_template` (which requires the file to live under `templates/`) — it's now a plain file read with a manual `{{ version }}` substitution, since that placeholder was the only reason it was ever Jinja-rendered in the first place
+- Legal sub-page titles now follow the `(Page) | Legal - Kittens` format (e.g. `Privacy Policy | Legal - Kittens`), matching the convention used across the org; the hub page itself is titled just `Legal - Kittens`
+
 ## v1.6.1
 
 ### Changed
