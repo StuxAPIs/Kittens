@@ -5,6 +5,11 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.4.1
+
+### Fixed
+- Homepage footer's copyright line showed `{{ config.title }}` ("Kittens") as the copyright holder with only the current year — now reads `2024-{{ year }} StuxAPIs`, matching the copyright holder/start year used in `LICENSE`
+
 ## v1.4.0
 
 ### Added
