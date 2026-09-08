@@ -5,6 +5,12 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.5.4
+
+### Fixed
+- `logo.svg`'s viewBox was cropped tight horizontally (v1.5.0) but the "Kittens" wordmark was still only font-size 52 against a 96px-tall icon badge, leaving a lot of visually empty space above/below the text relative to the icon's weight. Bumped to font-size 80 (measured the actual rendered text width/height to keep the crop tight rather than guessing) for a much better-balanced icon/wordmark lockup
+- `/changelog` (and any other long-content page using `.legal-body`) had its bottom padding effectively swallowed: the global `body { height: 100% }` rule (needed for the homepage's fullscreen single-viewport layout) clamped the body's box to one viewport tall, so on pages taller than the viewport the specified `5rem` bottom padding was calculated relative to that clamped box instead of after the actual (overflowing) content — visually, the last element sat flush against the bottom of the page with no padding at all. `body.legal-body` now sets `height: auto` to opt out of that constraint
+
 ## v1.5.3
 
 ### Fixed
