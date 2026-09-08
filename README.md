@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="templates/assets/profile.png" width="120" alt="Kittens API">
+  <img src="templates/assets/logo.svg" width="300" alt="Kittens">
 </p>
 
-# Kittens API
+# Kittens
 
-An API that provides random images of kittens.
+An API that provides random images of kittens. Built & Maintained by [StuxAPIs](https://github.com/StuxAPIs), Hosted by [Stuxedo](https://stuxedo.com).
 
 - Live: https://kittens.stuxapis.net
 - `GET /random` — redirect to a random kitten image

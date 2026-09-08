@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name":"Kittens API",
+      "name":"Kittens",
       "script":"start.sh"
     }
   ]

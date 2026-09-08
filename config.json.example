@@ -1,7 +1,7 @@
 {
   "localhost": false,
   "domain": "https://kittens.stuxapis.net/",
-  "title": "Kittens API",
+  "title": "Kittens",
   "description": "Get random pictures of kittens",
   "imagefolder": "images",
   "suffix": "_kitten",

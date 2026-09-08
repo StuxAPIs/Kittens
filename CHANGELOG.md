@@ -1,9 +1,19 @@
 # Changelog
 
-All notable changes to the Kittens API are documented here.
+All notable changes to Kittens are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v1.1.0
+
+### Added
+- `templates/assets/logo.svg` — a full wordmark logo (cat-face icon + "Kittens" text), used as the README header image. The existing `templates/assets/profile.png` icon is unchanged and still used for the site's favicon/`og:image`.
+
+### Changed
+- Renamed "Kittens API" to "Kittens" throughout: `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`, `config.json`/`config.json.example`'s `title` field, `pm2.json`'s app name, and all five `templates/legal/*.html` pages
+- Homepage's "Powered by StuxAPIs" line replaced with "Built & Maintained by StuxAPIs, Hosted by Stuxedo" (both now linked, to `github.com/StuxAPIs` and `stuxedo.com`), matching the branding used everywhere else in the org
+- `README.md`'s tagline now matches the live GitHub description, ending in "Built & Maintained by StuxAPIs, Hosted by Stuxedo."
 
 ## v1.0.4
 

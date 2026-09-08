@@ -1,4 +1,4 @@
-# Contributing to the Kittens API
+# Contributing to Kittens
 
 Thanks for your interest in contributing!
 

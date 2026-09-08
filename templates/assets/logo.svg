@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100" role="img" aria-label="Kittens">
+  <rect x="2" y="2" width="96" height="96" rx="24" fill="#d35400"/>
+  <g fill="#ffffff">
+    <path d="M22 40 L34 14 L46 40 Z"/>
+    <path d="M54 40 L66 14 L78 40 Z"/>
+    <circle cx="50" cy="58" r="28"/>
+  </g>
+  <g fill="#d35400">
+    <circle cx="41" cy="55" r="3.2"/>
+    <circle cx="59" cy="55" r="3.2"/>
+    <path d="M47 64 L53 64 L50 68 Z"/>
+  </g>
+  <text x="118" y="68" font-family="'Segoe UI', Arial, sans-serif" font-size="52" font-weight="700" fill="#d35400">Kittens</text>
+</svg>
