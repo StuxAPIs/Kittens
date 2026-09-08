@@ -44,7 +44,7 @@ def randomize(dir, checker):
 @app.route("/")
 async def index():
     return await render_template(
-        'index.html', config=config,
+        'index.html', config=config, domain=domain,
         background=random.choice(cache_images), images=len(cache_images),
         version=VERSION, year=datetime.date.today().year
     )

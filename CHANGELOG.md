@@ -5,6 +5,18 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.5.0
+
+### Fixed
+- `/` (the homepage route) never passed `domain` to its template, unlike every other route — `{{ domain }}` silently rendered as empty everywhere on the homepage. It happened to still resolve correctly by coincidence there (root-relative paths behave the same as domain-absolute ones at `/`), but broke the Open Graph `og:image` tag, which requires an absolute URL for link previews on Discord/Twitter/etc. Now passes `domain=domain` like every other route
+- `templates/assets/images/profile.png` (used for the favicon and `og:image`) was still the literal old Twemoji cat-emoji graphic — the one that used to sit in the homepage `<h1>` before the logo redesign, never actually replaced when that redesign happened. Replaced with a proper square icon matching the new logo's cat-face design
+- `logo.svg`'s viewBox was 400 wide, but the actual icon+wordmark content only occupied about the first 300px, leaving ~70px of dead space on the right — this made the logo look off-center on the page even though its bounding box genuinely was centered. Trimmed the viewBox to fit the content tightly (measured the actual rendered text width rather than guessing)
+- `.logo-img` set both a fixed `height: 90px` and `max-width: 85vw` without `height: auto` — on any viewport narrower than ~423px this would have squished the logo's aspect ratio once `max-width` became the binding constraint. Changed to `max-height` + `max-width` with both `width`/`height: auto`, the standard "fit in box, preserve aspect ratio" pattern
+
+### Changed
+- Homepage responsiveness overhaul: hero title/tagline/subtext now use `clamp()`-based fluid font sizing instead of fixed `rem` values (which didn't scale down for mobile), `.center-object` gained horizontal padding, `body` gained `overflow-x: hidden` as a safety net, and the viewport meta tag no longer disables pinch-zoom (`user-scalable=no, maximum-scale=1.0` removed — an accessibility/mobile-friendliness anti-pattern)
+- "Images in API: N" moved out of the hero block and into the footer, alongside the copyright/version line
+
 ## v1.4.2
 
 ### Fixed
