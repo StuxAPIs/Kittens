@@ -136,10 +136,17 @@ a { color: #d35400; text-decoration: none; }
 
 /* Legal pages + changelog - shared narrow-column content layout */
 
-body.legal-body { height: auto; max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; line-height: 1.6; }
+body.legal-body { height: auto; max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; line-height: 1.6; overflow-wrap: break-word; }
 body.legal-body a { color: #d35400; }
 body.legal-body h1 { margin-bottom: .25rem; }
 body.legal-body .legal-back { display: inline-block; margin-bottom: 1.5rem; opacity: .8; }
+body.legal-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .85em;
+  background: rgba(255,255,255,.08);
+  border-radius: 4px;
+  padding: .1em .35em;
+}
 
 .legal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
 .legal-card { display: block; padding: 1rem 1.25rem; border-radius: .5rem; border: 1px solid rgba(128,128,128,.3); text-decoration: none; color: inherit; }
@@ -165,11 +172,3 @@ footer.legal-footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
 .changelog-body ul { padding-left: 1.3em; margin: 0 0 .75rem; }
 
 .changelog-body li { margin-bottom: .4rem; font-size: .92rem; }
-
-.changelog-body code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .85em;
-  background: rgba(255,255,255,.08);
-  border-radius: 4px;
-  padding: .1em .35em;
-}

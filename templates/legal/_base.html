@@ -8,11 +8,11 @@
     <link rel="icon" type="image/x-icon" href="https://global.media.stuxapis.net/kittens/icon.png">
   </head>
   <body class="legal-body">
-    <a class="legal-back" href="/legal">&larr; Back to Boring Legal Stuff</a>
+    {% block backlink %}<a class="legal-back" href="/legal">&larr; Back to Boring Legal Stuff</a>{% endblock %}
     {% block content %}{% endblock %}
     <footer class="legal-footer">
-      <p>Questions about any of this? Contact <a href="mailto:contact@stuxapis.net">contact@stuxapis.net</a>.</p>
-      <p><a href="/">&larr; Back to {{ config.title }}</a></p>
+      <p>Questions about any of this? Contact <a href="mailto:legal@stuxapis.net">legal@stuxapis.net</a>.</p>
+      <p><a href="/">&larr; Back to {{ config.title }}</a> &middot; <a href="/about">About</a></p>
     </footer>
   </body>
 </html>

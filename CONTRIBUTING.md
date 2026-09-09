@@ -32,4 +32,4 @@ Releases follow [Semantic Versioning](https://semver.org/):
 
 ## Questions
 
-Reach out at [contact@stuxapis.net](mailto:contact@stuxapis.net).
+Reach out at [hello@stuxapis.net](mailto:hello@stuxapis.net).

@@ -18,6 +18,7 @@ The project is fully open source.
 
 ## Website
 
+- About: [/about](https://kittens.stuxapis.net/about)
 - Legal: [/legal](https://kittens.stuxapis.net/legal)
 - Changelog: [/changelog](https://kittens.stuxapis.net/changelog) — renders [CHANGELOG.md](CHANGELOG.md) as HTML
 - Styling: a small self-contained stylesheet (`assets/css/kittens.css`), no external framework

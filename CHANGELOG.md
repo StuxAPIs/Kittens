@@ -5,6 +5,18 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.7.0
+
+### Added
+- `/about` — a new page describing what Kittens is, its endpoints, and who runs it, linked from the homepage footer, `/changelog` footer, and the legal pages' shared footer
+
+### Fixed
+- `/changelog` (and any other page using the shared `.legal-body` narrow-column layout) could overflow horizontally on mobile: long unbroken inline `code` spans and URLs in the rendered Markdown had no wrapping rule, so they'd extend past the content column instead of breaking onto a new line — `body.legal-body` now sets `overflow-wrap: break-word`
+- The `/legal` hub page inherited the shared legal-page header link ("&larr; Back to Boring Legal Stuff") from `legal/_base.html`, which pointed right back at itself — it now reads "&larr; Back to Kittens" and links to `/`, like every other page's back link. `legal/_base.html`'s top link is now a `{% block backlink %}` so the hub page can override it
+
+### Changed
+- The legal pages' shared footer contact address is now `legal@stuxapis.net` instead of the general `contact@stuxapis.net`; the Imprint and Disclaimer pages' own contact links, and `CONTRIBUTING.md`'s "Questions" section, now point at the general `hello@stuxapis.net` instead
+
 ## v1.6.2
 
 ### Changed

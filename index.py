@@ -67,6 +67,13 @@ async def changelog():
     )
 
 
+@app.route("/about")
+async def about():
+    return await render_template(
+        "about.html", config=config, domain=domain, version=VERSION
+    )
+
+
 @app.route("/legal")
 async def legal():
     return await render_template("legal/index.html", config=config, domain=domain, version=VERSION)
