@@ -6,6 +6,7 @@
     <link href="{{ domain }}assets/css/kittens.css?v={{ version }}" type="text/css" rel="stylesheet">
     <meta name="theme-color" content="#d35400">
     <link rel="icon" type="image/x-icon" href="https://global.media.stuxapis.net/kittens/icon.png">
+    {% block head_extra %}{% endblock %}
   </head>
   <body class="legal-body">
     {% block backlink %}<a class="legal-back" href="/legal">&larr; Back to Boring Legal Stuff</a>{% endblock %}

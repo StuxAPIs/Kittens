@@ -1,7 +1,11 @@
 {% extends "legal/_base.html" %}
 {% block title %}Imprint | Legal - {{ config.title }}{% endblock %}
+{% block head_extra %}
+<link href="{{ domain }}assets/fontawesome/css/fontawesome.min.css?v=6.7.2" type="text/css" rel="stylesheet">
+<link href="{{ domain }}assets/fontawesome/css/brands.min.css?v=6.7.2" type="text/css" rel="stylesheet">
+{% endblock %}
 {% block content %}
 <h1>Imprint</h1>
-<p>Kittens is operated by <strong>Stux.Group</strong>, as part of the <a href="https://github.com/StuxAPIs">StuxAPIs</a> collection of free public APIs.</p>
+<p>Kittens is operated by <strong>Stux.Group</strong>, as part of the <a href="https://github.com/StuxAPIs"><i class="fa-brands fa-github" aria-hidden="true"></i> StuxAPIs</a> collection of free public APIs.</p>
 <p>Contact: <a href="mailto:hello@stuxapis.net">hello@stuxapis.net</a></p>
 {% endblock %}

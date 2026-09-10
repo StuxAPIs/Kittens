@@ -5,6 +5,11 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.0
+
+### Added
+- Self-hosted Font Awesome 6.7.2 icons (`assets/fontawesome/`, served via the existing `/assets/<path:filename>` route) — the GitHub links on `/about` and `/legal/imprint` now show the GitHub brand icon. `legal/_base.html` gained a `{% block head_extra %}` so only the sub-page that needs Font Awesome's CSS loads it, instead of every legal page paying for it
+
 ## v1.7.1
 
 ### Changed
