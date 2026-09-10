@@ -159,7 +159,9 @@ footer.legal-footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
 /* Changelog page - typography for the rendered Markdown body */
 
 .changelog-body h2 {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 1.2rem;
+  font-weight: 700;
   margin: 2rem 0 .75rem;
   padding-bottom: .5rem;
   border-bottom: 1px solid rgba(128,128,128,.3);
@@ -169,6 +171,36 @@ footer.legal-footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
 
 .changelog-body h3 { font-size: .95rem; margin: 1.25rem 0 .5rem; opacity: .9; }
 
-.changelog-body ul { padding-left: 1.3em; margin: 0 0 .75rem; }
+.changelog-body .cl-label {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin: 1.25rem 0 .5rem;
+}
 
-.changelog-body li { margin-bottom: .4rem; font-size: .92rem; }
+.changelog-body .cl-label-added { background: rgba(52,199,89,.15); color: #5de08a; }
+.changelog-body .cl-label-changed { background: rgba(124,92,255,.18); color: #a78bfa; }
+.changelog-body .cl-label-fixed { background: rgba(255,179,71,.15); color: #ffbe6a; }
+.changelog-body .cl-label-removed { background: rgba(255,69,69,.15); color: #f28b82; }
+.changelog-body .cl-label-deprecated { background: rgba(255,179,71,.15); color: #ffbe6a; }
+.changelog-body .cl-label-security { background: rgba(255,69,69,.2); color: #f28b82; }
+
+.changelog-body ul.cl-list { list-style: none; margin: 0 0 .75rem; padding: 0; }
+
+.changelog-body ul.cl-list li {
+  position: relative;
+  padding: 3px 0 3px 18px;
+  margin: 0;
+  font-size: .92rem;
+}
+
+.changelog-body ul.cl-list li::before {
+  content: "\2013";
+  position: absolute;
+  left: 0;
+  color: #d35400;
+}

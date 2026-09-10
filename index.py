@@ -12,6 +12,27 @@ from quart import Quart, jsonify, send_from_directory, send_file, render_templat
 
 LEGAL_PAGES = ("privacy", "terms", "cookies", "imprint", "disclaimer", "opt-out")
 
+CHANGELOG_LABELS = {
+    "Added": "added",
+    "Changed": "changed",
+    "Fixed": "fixed",
+    "Removed": "removed",
+    "Deprecated": "deprecated",
+    "Security": "security",
+}
+
+
+def stylise_changelog(html):
+    def label(match):
+        word = match.group(1)
+        slug = CHANGELOG_LABELS.get(word)
+        if not slug:
+            return match.group(0)
+        return f'<p class="cl-label cl-label-{slug}">{word}</p>'
+
+    html = re.sub(r"<h3>(\w+)</h3>", label, html)
+    return html.replace("<ul>", '<ul class="cl-list">')
+
 with open("VERSION.md", encoding="utf-8") as f:
     VERSION = f.read().strip()
 
@@ -60,6 +81,7 @@ async def changelog():
     # actually matter here.
     body = re.sub(r"^# Changelog\n.*?(?=\n## )", "", raw, flags=re.DOTALL)
     changelog_html = markdown_lib.markdown(body, extensions=["fenced_code"])
+    changelog_html = stylise_changelog(changelog_html)
 
     return await render_template(
         "changelog.html", config=config, domain=domain, version=VERSION,

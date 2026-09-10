@@ -5,6 +5,11 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.7.1
+
+### Changed
+- `/changelog` restyled to match the TIGHC changelog page (tighc.stuxie.dev/changelogs): each `### Added`/`Changed`/`Fixed`/`Removed`/`Deprecated`/`Security` heading now renders as a colored uppercase pill badge instead of plain text, version headings use a bold monospace font, and list items get an accent-colored dash marker instead of the default bullet. `index.py`'s `/changelog` route now post-processes the rendered Markdown to swap `<h3>` headings for badge `<p>` tags and tag `<ul>` elements for the new styling; `kittens.css` gains the corresponding `.cl-label`/`.cl-list` rules
+
 ## v1.7.0
 
 ### Added
