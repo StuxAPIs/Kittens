@@ -5,6 +5,14 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.2
+
+### Fixed
+- The Imprint page said Kittens is "operated by Stux.Group, as part of the StuxAPIs collection" — the actual chain is Kittens → StuxAPIs → Stux Group Ltd. Corrected to name StuxAPIs as the direct operator, with Stux Group Ltd's full registration details.
+- `LICENSE` and `README.md`'s copyright line named `Stux.Group` (a brand, not a legal entity) — corrected to `Stux Group Ltd`.
+### Added
+- "A StuxAPIs Service" credit (linking to `https://services.stuxapis.net`) in the site footer.
+
 ## v1.8.1
 
 ### Fixed
