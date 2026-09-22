@@ -5,6 +5,14 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.3
+
+### Added
+- Complete Open Graph and Twitter card meta tags on `templates/index.html`
+  (`og:type`, `og:site_name`, `og:url`, image dimensions/alt, and the full
+  `twitter:*` set) — previously only a partial `og:image`/`og:title`/
+  `og:description` set existed, with no Twitter card tags at all.
+
 ## v1.8.2
 
 ### Fixed

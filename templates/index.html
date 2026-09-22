@@ -6,12 +6,26 @@
     <link href="{{ domain }}assets/css/kittens.css?v={{ version }}" type="text/css" rel="stylesheet">
 
     <meta name="theme-color" content="#d35400">
-    <meta content="https://global.media.stuxapis.net/kittens/icon.png" property="og:image" />
     <link rel="icon" type="image/x-icon" href="https://global.media.stuxapis.net/kittens/icon.png">
-    <meta content="{{ config.title }}" property="og:title" />
-
-    <meta content="{{ config.description }}" property="og:description" />
     <meta content="{{ config.description }}" name="description" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="StuxAPIs">
+    <meta property="og:title" content="{{ config.title }}">
+    <meta property="og:description" content="{{ config.description }}">
+    <meta property="og:url" content="{{ domain }}">
+    <meta property="og:image" content="https://global.media.stuxapis.net/kittens/icon.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="{{ config.title }} icon">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="StuxAPIs">
+    <meta name="twitter:title" content="{{ config.title }}">
+    <meta name="twitter:description" content="{{ config.description }}">
+    <meta name="twitter:url" content="{{ domain }}">
+    <meta name="twitter:image" content="https://global.media.stuxapis.net/kittens/icon.png">
+    <meta name="twitter:image:alt" content="{{ config.title }} icon">
   </head>
   <body>
     <section class="fullscreen">
