@@ -5,6 +5,11 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.5
+
+### Added
+- A custom `404.html` (matching the `about`/`legal` page style) for unmatched routes and missing kitten files, replacing Quart's default plain-text error page.
+
 ## v1.8.4
 
 ### Changed

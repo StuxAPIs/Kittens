@@ -168,5 +168,12 @@ async def randomkittenJSON():
     })
 
 
+@app.errorhandler(404)
+async def not_found(_error):
+    return await render_template(
+        "404.html", config=config, domain=domain, version=VERSION
+    ), 404
+
+
 randomize(config.imagefolder, config.suffix)
 app.run(port=config.port, debug=config.debug)
