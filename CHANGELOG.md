@@ -5,6 +5,11 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.4
+
+### Changed
+- Footer copyright year always showed a `2024-<current year>` range, even in 2024 itself (when it should've just read `2024`). Now shows just `2024` (Kittens' real first-commit year) until the current year moves past it, then the range.
+
 ## v1.8.3
 
 ### Added
