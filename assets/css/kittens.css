@@ -182,12 +182,17 @@ footer.legal-footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
   margin: 1.25rem 0 .5rem;
 }
 
-.changelog-body .cl-label-added { background: rgba(52,199,89,.15); color: #5de08a; }
-.changelog-body .cl-label-changed { background: rgba(124,92,255,.18); color: #a78bfa; }
-.changelog-body .cl-label-fixed { background: rgba(255,179,71,.15); color: #ffbe6a; }
-.changelog-body .cl-label-removed { background: rgba(255,69,69,.15); color: #f28b82; }
-.changelog-body .cl-label-deprecated { background: rgba(255,179,71,.15); color: #ffbe6a; }
-.changelog-body .cl-label-security { background: rgba(255,69,69,.2); color: #f28b82; }
+.changelog-body .cl-label {
+  color: var(--cl);
+  background: color-mix(in srgb, var(--cl) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cl) 45%, transparent);
+}
+.changelog-body .cl-label-added { --cl: #2ecc71; }
+.changelog-body .cl-label-changed { --cl: #3ba7ff; }
+.changelog-body .cl-label-fixed { --cl: #ffa64d; }
+.changelog-body .cl-label-removed { --cl: #ff4d4d; }
+.changelog-body .cl-label-security { --cl: #b06bff; }
+.changelog-body .cl-label-deprecated { --cl: #8a8a94; }
 
 .changelog-body ul.cl-list { list-style: none; margin: 0 0 .75rem; padding: 0; }
 

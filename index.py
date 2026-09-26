@@ -17,9 +17,32 @@ CHANGELOG_LABELS = {
     "Changed": "changed",
     "Fixed": "fixed",
     "Removed": "removed",
-    "Deprecated": "deprecated",
     "Security": "security",
+    "Deprecated": "deprecated",
 }
+
+# Fixed display order for changelog section types - sections are sorted into
+# this order at render time rather than trusting the markdown's order.
+# Unknown section types go last, keeping their original relative order.
+CHANGELOG_ORDER = ["Added", "Changed", "Fixed", "Removed", "Security", "Deprecated"]
+
+
+def sort_changelog_sections(md):
+    def rank(section):
+        m = re.match(r"###\s+(\w+)", section)
+        word = m.group(1) if m else ""
+        return CHANGELOG_ORDER.index(word) if word in CHANGELOG_ORDER else len(CHANGELOG_ORDER)
+
+    out = []
+    for release in re.split(r"(?m)^(?=## )", md):
+        chunks = re.split(r"(?m)^(?=### )", release)
+        head, sections = chunks[0], chunks[1:]
+        if not sections:
+            out.append(release)
+            continue
+        sections = sorted((s.rstrip() for s in sections), key=rank)
+        out.append(head + "\n\n".join(sections) + "\n\n")
+    return "".join(out)
 
 
 def stylise_changelog(html):
@@ -80,6 +103,7 @@ async def changelog():
     # already has its own header, and the version/date headings are what
     # actually matter here.
     body = re.sub(r"^# Changelog\n.*?(?=\n## )", "", raw, flags=re.DOTALL)
+    body = sort_changelog_sections(body)
     changelog_html = markdown_lib.markdown(body, extensions=["fenced_code"])
     changelog_html = stylise_changelog(changelog_html)
 

@@ -5,6 +5,13 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.6
+
+### Changed
+- Changelog page badges now use the fixed shared palette — Added green, Changed blue, Fixed orange, Removed red, Security purple, Deprecated grey — as tinted pills
+- `###` sections within each release are sorted into that same fixed order (Added, Changed, Fixed, Removed, Security, Deprecated) at render time, whatever order `CHANGELOG.md` lists them in; unknown types go last
+- CHANGELOG sections reordered to Added, Changed, Fixed, Removed, Security, Deprecated
+
 ## v1.8.5
 
 ### Added
@@ -25,11 +32,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.8.2
 
+### Added
+- "A StuxAPIs Service" credit (linking to `https://services.stuxapis.net`) in the site footer.
+
 ### Fixed
 - The Imprint page said Kittens is "operated by Stux.Group, as part of the StuxAPIs collection" — the actual chain is Kittens → StuxAPIs → Stux Group Ltd. Corrected to name StuxAPIs as the direct operator, with Stux Group Ltd's full registration details.
 - `LICENSE` and `README.md`'s copyright line named `Stux.Group` (a brand, not a legal entity) — corrected to `Stux Group Ltd`.
-### Added
-- "A StuxAPIs Service" credit (linking to `https://services.stuxapis.net`) in the site footer.
 
 ## v1.8.1
 
@@ -51,12 +59,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `/about` — a new page describing what Kittens is, its endpoints, and who runs it, linked from the homepage footer, `/changelog` footer, and the legal pages' shared footer
 
+### Changed
+- The legal pages' shared footer contact address is now `legal@stuxapis.net` instead of the general `contact@stuxapis.net`; the Imprint and Disclaimer pages' own contact links, and `CONTRIBUTING.md`'s "Questions" section, now point at the general `hello@stuxapis.net` instead
+
 ### Fixed
 - `/changelog` (and any other page using the shared `.legal-body` narrow-column layout) could overflow horizontally on mobile: long unbroken inline `code` spans and URLs in the rendered Markdown had no wrapping rule, so they'd extend past the content column instead of breaking onto a new line — `body.legal-body` now sets `overflow-wrap: break-word`
 - The `/legal` hub page inherited the shared legal-page header link ("&larr; Back to Boring Legal Stuff") from `legal/_base.html`, which pointed right back at itself — it now reads "&larr; Back to Kittens" and links to `/`, like every other page's back link. `legal/_base.html`'s top link is now a `{% block backlink %}` so the hub page can override it
-
-### Changed
-- The legal pages' shared footer contact address is now `legal@stuxapis.net` instead of the general `contact@stuxapis.net`; the Imprint and Disclaimer pages' own contact links, and `CONTRIBUTING.md`'s "Questions" section, now point at the general `hello@stuxapis.net` instead
 
 ## v1.6.2
 
@@ -100,24 +108,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.5.0
 
+### Changed
+- Homepage responsiveness overhaul: hero title/tagline/subtext now use `clamp()`-based fluid font sizing instead of fixed `rem` values (which didn't scale down for mobile), `.center-object` gained horizontal padding, `body` gained `overflow-x: hidden` as a safety net, and the viewport meta tag no longer disables pinch-zoom (`user-scalable=no, maximum-scale=1.0` removed — an accessibility/mobile-friendliness anti-pattern)
+- "Images in API: N" moved out of the hero block and into the footer, alongside the copyright/version line
+
 ### Fixed
 - `/` (the homepage route) never passed `domain` to its template, unlike every other route — `{{ domain }}` silently rendered as empty everywhere on the homepage. It happened to still resolve correctly by coincidence there (root-relative paths behave the same as domain-absolute ones at `/`), but broke the Open Graph `og:image` tag, which requires an absolute URL for link previews on Discord/Twitter/etc. Now passes `domain=domain` like every other route
 - `templates/assets/images/profile.png` (used for the favicon and `og:image`) was still the literal old Twemoji cat-emoji graphic — the one that used to sit in the homepage `<h1>` before the logo redesign, never actually replaced when that redesign happened. Replaced with a proper square icon matching the new logo's cat-face design
 - `logo.svg`'s viewBox was 400 wide, but the actual icon+wordmark content only occupied about the first 300px, leaving ~70px of dead space on the right — this made the logo look off-center on the page even though its bounding box genuinely was centered. Trimmed the viewBox to fit the content tightly (measured the actual rendered text width rather than guessing)
 - `.logo-img` set both a fixed `height: 90px` and `max-width: 85vw` without `height: auto` — on any viewport narrower than ~423px this would have squished the logo's aspect ratio once `max-width` became the binding constraint. Changed to `max-height` + `max-width` with both `width`/`height: auto`, the standard "fit in box, preserve aspect ratio" pattern
 
-### Changed
-- Homepage responsiveness overhaul: hero title/tagline/subtext now use `clamp()`-based fluid font sizing instead of fixed `rem` values (which didn't scale down for mobile), `.center-object` gained horizontal padding, `body` gained `overflow-x: hidden` as a safety net, and the viewport meta tag no longer disables pinch-zoom (`user-scalable=no, maximum-scale=1.0` removed — an accessibility/mobile-friendliness anti-pattern)
-- "Images in API: N" moved out of the hero block and into the footer, alongside the copyright/version line
-
 ## v1.4.2
-
-### Fixed
-- `README.md`'s header logo pointed at `templates/assets/logo.svg`, which moved to `templates/assets/images/logo.svg` in the v1.4.0 asset reorg — the `.md` file wasn't caught by that pass since it only swept `.html` templates, so the logo stopped rendering on the GitHub repo page
 
 ### Changed
 - `README.md`'s "Website" section updated to reflect the site as it actually is now: added the `/changelog` page link, and notes on the self-hosted `kittens.css` stylesheet and self-hosted Fredoka font (previously undocumented)
 - `config.json.example`'s `description` field ("Get random pictures of kittens") reworded to "An API that provides random images of kittens", matching `README.md`'s tagline. **Note:** this only updates the template — the actual `config.json` on the production server is gitignored and won't pick this up automatically; it needs updating there by hand (same as the `title` field previously)
+
+### Fixed
+- `README.md`'s header logo pointed at `templates/assets/logo.svg`, which moved to `templates/assets/images/logo.svg` in the v1.4.0 asset reorg — the `.md` file wasn't caught by that pass since it only swept `.html` templates, so the logo stopped rendering on the GitHub repo page
 
 ## v1.4.1
 
