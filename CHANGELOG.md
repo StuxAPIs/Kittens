@@ -5,6 +5,12 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.8.8
+
+### Fixed
+
+- The footer's copyright range uses an en dash (2024–2026) instead of a hyphen
+
 ## v1.8.7
 
 ### Changed
