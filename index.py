@@ -159,7 +159,7 @@ async def legal_page(slug):
 @app.route("/doggy")
 @app.route("/418")
 async def pup():
-    return await render_template("418.html"), 418
+    return await render_template("418.html", config=config, domain=domain, version=VERSION), 418
 
 
 @app.route("/<filename>")

@@ -1,2 +1,19 @@
-<h1>I'm a kitten</h1>
-<p>This server is a kitten, not a puppie</p>
+<html>
+  <head>
+    <title>I'm a Kitten - {{ config.title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link href="{{ domain }}assets/css/kittens.css?v={{ version }}" type="text/css" rel="stylesheet">
+    <meta name="theme-color" content="#d35400">
+    <link rel="icon" type="image/x-icon" href="https://global.media.stuxapis.net/kittens/icon.png">
+  </head>
+  <body class="legal-body">
+    <a class="legal-back" href="/">&larr; Back to {{ config.title }}</a>
+    <h1>418</h1>
+    <p><strong>I'm a kitten.</strong> This server is a kitten, not a puppie.</p>
+    <p>Try <a href="/random">a random kitten</a> instead?</p>
+    <footer class="legal-footer">
+      <p><a href="/legal">Boring Legal Stuff</a> &middot; <a href="/changelog">Changelog</a></p>
+    </footer>
+  </body>
+</html>
