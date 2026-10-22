@@ -1,0 +1,234 @@
+<html>
+  <head>
+    <title>Too Large - Kittens</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    
+    <style>/* Kittens - custom stylesheet (replaces the old ModestaCSS/Twemoji dependency) */
+
+/* Fredoka - self-hosted (SIL Open Font License), variable weight 400-700,
+   Latin subset only. https://fonts.google.com/specimen/Fredoka */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('https://kittens.stuxapis.net/assets/fonts/Fredoka.woff2?v=1.9.0') format('woff2');
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0 auto; height: 100%; }
+
+body {
+  font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #fff;
+  background-color: #181818;
+  overflow-x: hidden;
+}
+
+a { color: #d35400; text-decoration: none; }
+
+.fullscreen {
+  height: 100%;
+  background-color: #181818;
+  position: relative;
+}
+
+.background {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(5px) brightness(50%);
+  height: 100%;
+  width: 100%;
+}
+
+.center-object {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  vertical-align: middle;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.title { margin: 0; text-align: center; }
+
+.logo-img {
+  max-height: 90px;
+  max-width: 85vw;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+
+.undertitle {
+  display: block;
+  flex-direction: column;
+  margin: 0;
+  text-align: center;
+  max-width: 100%;
+}
+
+.tagline { font-size: clamp(1.15rem, 4.5vw, 2.5rem); }
+
+.subtext { font-size: clamp(.85rem, 3vw, 1.7rem); }
+
+.accent-text { color: #d35400; }
+
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  text-align: center;
+}
+
+.btn {
+  backface-visibility: hidden;
+  background-color: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 38px;
+  line-height: 38px;
+  margin: .5em;
+  padding: 0 30px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:hover { filter: brightness(65%); transition: filter 200ms ease; }
+
+.accent-bg { background-color: #d35400; }
+
+.animation {
+  animation: button-enter 1s ease-in-out forwards;
+  opacity: 0;
+  position: relative;
+}
+
+@keyframes button-enter {
+  from { opacity: 0; top: 2em; }
+  70% { top: -.3em; }
+  100% { opacity: 1; top: 0; }
+}
+
+.site-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 1rem;
+  font-size: clamp(.7rem, 2.5vw, .85rem);
+  opacity: .7;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .btn { padding: 0 18px; }
+}
+
+/* Legal pages + changelog - shared narrow-column content layout */
+
+body.legal-body { height: auto; max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; line-height: 1.6; overflow-wrap: break-word; }
+body.legal-body a { color: #d35400; }
+body.legal-body h1 { margin-bottom: .25rem; }
+body.legal-body .legal-back { display: inline-block; margin-bottom: 1.5rem; opacity: .8; }
+body.legal-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .85em;
+  background: rgba(255,255,255,.08);
+  border-radius: 4px;
+  padding: .1em .35em;
+}
+
+.legal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.legal-card { display: block; padding: 1rem 1.25rem; border-radius: .5rem; border: 1px solid rgba(128,128,128,.3); text-decoration: none; color: inherit; }
+.legal-card:hover { border-color: #d35400; }
+.legal-card-name { font-weight: 600; margin-bottom: .35rem; }
+.legal-card-desc { font-size: .85rem; opacity: .75; }
+
+footer.legal-footer { margin-top: 3rem; font-size: .85rem; opacity: .7; }
+
+/* Changelog page - typography for the rendered Markdown body */
+
+.changelog-body h2 {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2rem 0 .75rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(128,128,128,.3);
+}
+
+.changelog-body h2:first-child { margin-top: 1rem; }
+
+.changelog-body h3 { font-size: .95rem; margin: 1.25rem 0 .5rem; opacity: .9; }
+
+.changelog-body .cl-label {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin: 1.25rem 0 .5rem;
+}
+
+.changelog-body .cl-label {
+  color: var(--cl);
+  background: color-mix(in srgb, var(--cl) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cl) 45%, transparent);
+}
+.changelog-body .cl-label-added { --cl: #2ecc71; }
+.changelog-body .cl-label-changed { --cl: #3ba7ff; }
+.changelog-body .cl-label-fixed { --cl: #ffa64d; }
+.changelog-body .cl-label-removed { --cl: #ff4d4d; }
+.changelog-body .cl-label-security { --cl: #b06bff; }
+.changelog-body .cl-label-deprecated { --cl: #8a8a94; }
+
+.changelog-body ul.cl-list { list-style: none; margin: 0 0 .75rem; padding: 0; }
+
+.changelog-body ul.cl-list li {
+  position: relative;
+  padding: 3px 0 3px 18px;
+  margin: 0;
+  font-size: .92rem;
+}
+
+.changelog-body ul.cl-list li::before {
+  content: "\2013";
+  position: absolute;
+  left: 0;
+  color: #d35400;
+}
+</style>
+    
+    <meta name="theme-color" content="#d35400">
+    <link rel="icon" type="image/x-icon" href="https://global.media.stuxapis.net/kittens/icon.png">
+  </head>
+  <body class="legal-body">
+    <a class="legal-back" href="/">&larr; Back to Kittens</a>
+    <h1>413</h1>
+    <p>That&#39;s bigger than we accept.</p>
+    
+    <p>Try <a href="/random">a random kitten</a> instead?</p>
+    
+    <footer class="legal-footer">
+      <p><a href="/legal">Boring Legal Stuff</a> &middot; <a href="/changelog">Changelog</a></p>
+    </footer>
+  </body>
+</html>

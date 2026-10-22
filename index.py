@@ -12,6 +12,23 @@ from quart import Quart, jsonify, send_from_directory, send_file, render_templat
 
 LEGAL_PAGES = ("privacy", "terms", "cookies", "imprint", "disclaimer", "opt-out")
 
+# Error pages rendered with templates/error.html (404 and 418 have their own templates).
+# bin/build_static_errors.py renders the same template to errors/ for nginx to serve
+# when Kittens itself can't answer (502/503/504, and requests nginx rejects first).
+ERROR_PAGES = {
+    400: ("Bad Request", "That request didn't make sense to us. Try reloading the page."),
+    401: ("Sign-in Required", "This page needs you to sign in first."),
+    403: ("Access Denied", "You don't have permission to see this one."),
+    405: ("Method Not Allowed", "This page doesn't accept that kind of request."),
+    408: ("Request Timed Out", "Your browser took too long to send the request. Please try again."),
+    413: ("Too Large", "That's bigger than we accept."),
+    429: ("Too Many Requests", "That's a lot of kittens in a short time. Wait a moment and try again."),
+    500: ("Something Went Wrong", "Something broke on our side. Please try again in a moment."),
+    502: ("Service Unavailable", "Kittens isn't responding right now. It may be restarting, so please try again in a moment."),
+    503: ("Temporarily Unavailable", "Kittens is temporarily unavailable. Please try again shortly."),
+    504: ("Response Timed Out", "Kittens took too long to respond. Please try again in a moment."),
+}
+
 CHANGELOG_LABELS = {
     "Added": "added",
     "Changed": "changed",
@@ -197,6 +214,21 @@ async def not_found(_error):
     return await render_template(
         "404.html", config=config, domain=domain, version=VERSION
     ), 404
+
+
+def error_handler(code):
+    async def handler(_error):
+        title, message = ERROR_PAGES[code]
+        return await render_template(
+            "error.html", config=config, domain=domain, version=VERSION,
+            code=code, title=title, message=message
+        ), code
+    return handler
+
+
+# 502 and 504 only ever come from nginx in front of Kittens, so they're served from errors/
+for error_code in (400, 401, 403, 405, 408, 413, 429, 500, 503):
+    app.register_error_handler(error_code, error_handler(error_code))
 
 
 randomize(config.imagefolder, config.suffix)

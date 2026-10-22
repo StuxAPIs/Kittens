@@ -5,6 +5,14 @@ All notable changes to Kittens are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.9.0
+
+### Added
+
+- Kittens-styled error pages for the rest of the errors, not just 404 and 418: 400, 401, 403, 405, 408, 413, 429, 500 and 503 are rendered by the app from the new `templates/error.html` (same look as the 404 page), each with a plain-English explanation, and the 4xx ones still suggest a random kitten
+- Static copies of the pages for the errors nginx answers itself, in `errors/` (400, 413, 502, 503 and 504): when Kittens is down or restarting, nginx serves these instead of a generic page. They're generated from the same template, with the CSS inlined, by `bin/build_static_errors.py`
+- `nginx/kittens-errors.conf`, the nginx snippet that serves `errors/` for those codes on kittens.stuxapis.net and kittensapi.stuxapis.net
+
 ## v1.8.9
 
 ### Changed
