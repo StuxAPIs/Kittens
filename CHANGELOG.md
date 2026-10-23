@@ -3,7 +3,22 @@
 All notable changes to Kittens are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to [Date Versioning](https://datevers.ing) since v26.10.23 (`YY.MM.DD`, the UTC release date, with `-1`, `-2`… for later releases the same day); earlier releases used [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v26.10.23
+
+### Added
+
+- A Discord link preview for the home, About, Changelog and legal pages: a custom card with what Kittens is, the endpoints and a few link buttons, in the Kittens orange (`discord_embed.py`). The Open Graph tags stay as the fallback, and error pages don't get one
+- A full favicon set at the site root: `/favicon.ico` (16, 32 and 48px), `/apple-touch-icon.png`, `/site.webmanifest` and the 192 and 512px icons (including a maskable one), served from `public/`. The tags are printed on every page from `templates/_head_extra.html`, including the error pages
+- `tests/test_site.py`, covering the Discord embed, the favicon set and the changelog renderer with Date Version headings
+- `tests/version.sh`, which checks that `VERSION.md` is a valid Date Version, a real calendar date not in the future, and the same as the newest entry in this changelog
+
+### Changed
+
+- Switched from Semantic Versioning to [Date Versioning](https://datevers.ing): releases are numbered by their UTC release date as `YY.MM.DD`, with `-1`, `-2`… for later releases the same day. This release follows v1.9.1
+- `commit.sh` and `commit.bat` refuse a `VERSION.md` that isn't a valid Date Version or is dated in the future (UTC), and warn when it's dated before today
+- `README.md` and `CONTRIBUTING.md` describe Date Versioning and the release steps
 
 ## v1.9.1
 

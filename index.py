@@ -7,10 +7,25 @@ import secrets
 import datetime
 
 import markdown as markdown_lib
+import discord_embed
 from collections import namedtuple
 from quart import Quart, jsonify, send_from_directory, send_file, render_template, redirect, abort
 
 LEGAL_PAGES = ("privacy", "terms", "cookies", "imprint", "disclaimer", "opt-out")
+LEGAL_TITLES = {
+    "privacy": "Privacy Policy", "terms": "Terms and Ethics", "cookies": "Cookies Policy",
+    "imprint": "Imprint", "disclaimer": "Disclaimer", "opt-out": "Opt-Out Preferences",
+}
+
+# Site icons live at the web root, so these must be routed before the /<filename> image route.
+ROOT_FILES = {
+    "favicon.ico": "image/x-icon",
+    "apple-touch-icon.png": "image/png",
+    "icon-192.png": "image/png",
+    "icon-512.png": "image/png",
+    "icon-maskable-512.png": "image/png",
+    "site.webmanifest": "application/manifest+json",
+}
 
 # Error pages rendered with templates/error.html (404 and 418 have their own templates).
 # bin/build_static_errors.py renders the same template to errors/ for nginx to serve
@@ -107,7 +122,8 @@ async def index():
     return await render_template(
         'index.html', config=config, domain=domain,
         background=random.choice(cache_images), images=len(cache_images),
-        version=VERSION, year=datetime.date.today().year
+        version=VERSION, year=datetime.date.today().year,
+        discord_embed=discord_embed.home_embed(domain, config.title, config.description, len(cache_images))
     )
 
 
@@ -126,27 +142,41 @@ async def changelog():
 
     return await render_template(
         "changelog.html", config=config, domain=domain, version=VERSION,
-        changelog_html=changelog_html
+        changelog_html=changelog_html,
+        discord_embed=discord_embed.page_embed(
+            domain, "Changelog - " + config.title, "What changed in each release of Kittens.", "changelog")
     )
 
 
 @app.route("/about")
 async def about():
     return await render_template(
-        "about.html", config=config, domain=domain, version=VERSION
+        "about.html", config=config, domain=domain, version=VERSION,
+        discord_embed=discord_embed.page_embed(
+            domain, "About - " + config.title, "What Kittens is, who runs it and how to get in touch.", "about")
     )
 
 
 @app.route("/legal")
 async def legal():
-    return await render_template("legal/index.html", config=config, domain=domain, version=VERSION)
+    return await render_template(
+        "legal/index.html", config=config, domain=domain, version=VERSION,
+        discord_embed=discord_embed.page_embed(
+            domain, "Boring Legal Stuff - " + config.title,
+            "Privacy, terms, cookies, imprint, disclaimer and opt-out preferences, in plain English.", "legal")
+    )
 
 
 @app.route("/legal/<slug>")
 async def legal_page(slug):
     if slug not in LEGAL_PAGES:
         abort(404)
-    return await render_template(f"legal/{slug}.html", config=config, domain=domain, version=VERSION)
+    return await render_template(
+        f"legal/{slug}.html", config=config, domain=domain, version=VERSION,
+        discord_embed=discord_embed.page_embed(
+            domain, LEGAL_TITLES[slug] + " - " + config.title,
+            "Part of the Boring Legal Stuff for Kittens.", "legal/" + slug)
+    )
 
 
 # This is just for the memes, the holy 418 error \o/
@@ -164,6 +194,8 @@ async def pup():
 
 @app.route("/<filename>")
 async def kitten(filename):
+    if filename in ROOT_FILES:
+        return await send_from_directory("public", filename, mimetype=ROOT_FILES[filename])
     return await send_from_directory(config.imagefolder, filename)
 
 

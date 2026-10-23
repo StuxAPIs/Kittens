@@ -9,7 +9,7 @@
     <link href="{{ domain }}assets/css/kittens.css?v={{ version }}" type="text/css" rel="stylesheet">
     {% endif %}
     <meta name="theme-color" content="#d35400">
-    <link rel="icon" type="image/x-icon" href="https://global.media.stuxapis.net/kittens/icon.png">
+    {% include "_head_extra.html" %}
   </head>
   <body class="legal-body">
     <a class="legal-back" href="/">&larr; Back to {{ config.title }}</a>
