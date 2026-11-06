@@ -1,0 +1,30 @@
+name: CI
+
+# Runs the tests on every push and pull request. A passing run on a push to main triggers deploy.yml.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Version check
+        run: bash tests/version.sh
+      - name: Deploy scripts parse
+        run: |
+          for f in deploy/auto-deploy/*.sh; do bash -n "$f"; done
+          if grep -l $'\r' deploy/auto-deploy/*.sh; then echo "::error::CRLF line endings in the deploy scripts"; exit 1; fi
+          shellcheck deploy/auto-deploy/*.sh

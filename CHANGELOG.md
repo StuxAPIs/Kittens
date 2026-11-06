@@ -4,6 +4,21 @@ All notable changes to Kittens are documented here.
 
 Each release's sections follow a fixed order: Added, Changed, Fixed, Removed, Security, Deprecated. This project adheres to [Date Versioning](https://datevers.ing) since v26.10.23 (`YY.MM.DD`, the UTC release date, with `-1`, `-2`… for later releases the same day); earlier releases used [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v26.11.06-1
+
+### Added
+
+- Automatic deploys: after CI passes on a push to `main`, `.github/workflows/deploy.yml` asks the server to
+  deploy that exact commit. The server side, `deploy/auto-deploy/` (`kittens-deploy.sh` and `install.sh`), runs
+  from a root-owned copy outside the checkout, behind a deploy-only key restricted to that one command. It takes
+  a lock, refuses a commit that is no longer the tip of `main`, backs up `config.json`, fast-forwards as the
+  site's user, installs `requirements.txt` into the venv when it changed, restarts the pm2 app and checks its
+  health. The README's new "Deploying" section covers setting it up
+- `.github/workflows/ci.yml`: the unit tests, the version check and a lint of the deploy scripts, on every push
+  and pull request
+- `/health.json`, reporting `ok` (the app is serving and has images), the running version and the image count
+- `.gitattributes`, keeping shell scripts on LF line endings
+
 ## v26.11.06
 
 ### Changed
