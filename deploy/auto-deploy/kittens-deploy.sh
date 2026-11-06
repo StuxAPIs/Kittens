@@ -54,10 +54,10 @@ else
     DEPS_CHANGED=0
     if site_git diff --name-only "$OLD" "$SHA" -- requirements.txt | grep -q .; then
         DEPS_CHANGED=1
-        [ -n "$VENV" ] && [ -x "$VENV/bin/pip" ] || {
+        if [ -z "$VENV" ] || [ ! -x "$VENV/bin/pip" ]; then
             echo "requirements.txt changed but VENV ($VENV) has no bin/pip: set VENV in $CONF; nothing deployed" >&2
             exit 1
-        }
+        fi
     fi
 
     STAMP="$(date -u +%Y%m%dT%H%M%SZ)"

@@ -4,6 +4,13 @@ All notable changes to Kittens are documented here.
 
 Each release's sections follow a fixed order: Added, Changed, Fixed, Removed, Security, Deprecated. This project adheres to [Date Versioning](https://datevers.ing) since v26.10.23 (`YY.MM.DD`, the UTC release date, with `-1`, `-2`… for later releases the same day); earlier releases used [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v26.11.06-2
+
+### Fixed
+
+- `kittens-deploy.sh` checks the venv with an explicit `if` instead of `A && B || C`, which CI's shellcheck
+  rejects (SC2015)
+
 ## v26.11.06-1
 
 ### Added
