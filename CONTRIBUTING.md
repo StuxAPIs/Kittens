@@ -26,6 +26,12 @@ config so local URLs resolve to `127.0.0.1` out of the box. Pass
 
 Reach out at [hello@stuxapis.net](mailto:hello@stuxapis.net).
 
+## Branches
+
+- Work on `test`, or on a branch off it. Never push to `main`
+- Changes reach `main` only through a pull request from `test` into `main`, which needs CI to pass and is reviewed and merged by Leo
+- Release commits and tags are made on `test` (`git push origin test --tags`) and take effect when the pull request is merged. Merging deploys to the live server (see the README's "Deploying" section).
+
 ## Versioning
 
 This project uses [Date Versioning](https://datevers.ing). To release:

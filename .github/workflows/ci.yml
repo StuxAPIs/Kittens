@@ -1,8 +1,9 @@
 name: CI
 
-# Runs the tests on every push and pull request. A passing run on a push to main triggers deploy.yml.
+# Runs the tests on pushes to main and test, and on pull requests. A passing run on a push to main triggers deploy.yml.
 on:
   push:
+    branches: [main, test]
   pull_request:
 
 permissions:
