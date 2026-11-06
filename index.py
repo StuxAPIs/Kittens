@@ -117,6 +117,12 @@ def randomize(dir, checker):
             os.rename(f"{dir}/{file}", f"{dir}/{secrets.token_urlsafe(8)}{checker}.{name[-1]}")
 
 
+@app.route("/health.json")
+async def health():
+    """For the deploy script: ok once the app is serving and has images, plus the version it is running."""
+    return jsonify(ok=len(cache_images) > 0, version=VERSION, images=len(cache_images))
+
+
 @app.route("/")
 async def index():
     return await render_template(

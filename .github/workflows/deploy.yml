@@ -1,0 +1,49 @@
+name: Deploy
+
+# Updates the live site when main changes, once CI has passed on that commit.
+# The server side is deploy/auto-deploy/ (see README, "Deploying").
+# Secrets: DEPLOY_SSH_KEY (a key made only for this server's deploys), DEPLOY_KNOWN_HOSTS (the server's
+# pinned host key line) and DEPLOY_TARGET (root@<server>).
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy-live
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy main to the live site
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Deploy the tested commit
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_TARGET: ${{ secrets.DEPLOY_TARGET }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          if [ -z "$DEPLOY_SSH_KEY" ] || [ -z "$DEPLOY_KNOWN_HOSTS" ] || [ -z "$DEPLOY_TARGET" ]; then
+            echo "::error::DEPLOY_SSH_KEY, DEPLOY_KNOWN_HOSTS and DEPLOY_TARGET must all be set."
+            exit 1
+          fi
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+              -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts \
+              "$DEPLOY_TARGET" "deploy $SHA"
+
+      - name: Remove the key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

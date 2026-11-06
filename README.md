@@ -40,6 +40,36 @@ Or use the bundled dev server, which forces dev-mode config for you:
 dev-server.bat       # Windows
 ```
 
+## Deploying
+
+Merging to `main` deploys automatically. Once CI (`.github/workflows/ci.yml`) passes on the push,
+`.github/workflows/deploy.yml` connects to the server with a key that can run only
+`/usr/local/sbin/kittens-deploy`. Given the tested commit, that script:
+
+1. refuses if `main` has moved on since that commit was tested,
+2. backs up `config.json`, then fast-forwards the checkout as the site's own user,
+3. installs `requirements.txt` into the venv when it changed, putting the checkout back if that fails,
+4. restarts the `Kittens` pm2 app,
+5. checks `/health.json` reports `ok` and the new version, failing the run if not.
+
+It never runs `git clean`, so `config.json` and `images/` are left alone.
+
+### Setting it up (once per server)
+
+1. On the server, pull this release into the live checkout and restart the app, so it serves `/health.json`.
+2. Make a new ed25519 key used only for this server's Kittens deploys (never a login key, never shared with
+   another server).
+3. As root, run `deploy/auto-deploy/install.sh "<public key>" <venv path> [health URL]` from the checkout. It
+   installs the script root-owned outside the checkout, and adds the key to root's `authorized_keys` as
+   `restrict,command="/usr/local/sbin/kittens-deploy"`. The health URL defaults to
+   `http://127.0.0.1:8000/health.json`, and the installer checks it answers.
+4. Add the repository secrets: `DEPLOY_SSH_KEY` (the private key, then delete it locally),
+   `DEPLOY_KNOWN_HOSTS` (the server's ed25519 host key line, checked against its known fingerprint) and
+   `DEPLOY_TARGET` (`root@<server>`).
+
+Re-run `install.sh` whenever `deploy/auto-deploy/kittens-deploy.sh` changes: root runs the installed copy, not
+the repository's.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
