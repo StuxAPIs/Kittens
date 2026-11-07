@@ -4,6 +4,18 @@ All notable changes to Kittens are documented here.
 
 Each release's sections follow a fixed order: Added, Changed, Fixed, Removed, Security, Deprecated. This project adheres to [Date Versioning](https://datevers.ing) since v26.10.23 (`YY.MM.DD`, the UTC release date, with `-1`, `-2`… for later releases the same day); earlier releases used [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v26.11.06-3
+
+### Changed
+
+- CI runs on pushes to `main` and `test` (and on pull requests) instead of on every branch
+- `commit.sh` and `commit.bat` end by saying to push `test` and open a pull request into `main`
+- README (Versioning) and CONTRIBUTING (a new Branches section) describe the `test` branch flow: work and releases happen on `test`, and reach `main` only through a reviewed pull request that needs CI to pass
+
+### Fixed
+
+- `requirements.txt` lists `hypercorn`, which `start.sh` runs, so a fresh venv can start the app
+
 ## v26.11.06-2
 
 ### Fixed
