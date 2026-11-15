@@ -97,7 +97,9 @@ try:
         config = json.load(data, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
         domain = config.domain
         if config.localhost:
-            domain = "http://127.0.0.1:" + str(config.port) + "/"
+            # dev-server.sh/.bat --lan sets KITTENS_DEV_ADDR to this machine's LAN address,
+            # so links work from a phone on the same network
+            domain = "http://" + os.environ.get("KITTENS_DEV_ADDR", "127.0.0.1") + ":" + str(config.port) + "/"
 except FileNotFoundError:
     print("You need to make a config file to be able to run this API")
     sys.exit()
@@ -270,4 +272,5 @@ for error_code in (400, 401, 403, 405, 408, 413, 429, 500, 503):
 
 
 randomize(config.imagefolder, config.suffix)
-app.run(port=config.port, debug=config.debug)
+# dev-server.sh/.bat --lan sets KITTENS_DEV_HOST to 0.0.0.0; otherwise it listens on 127.0.0.1 only
+app.run(host=os.environ.get("KITTENS_DEV_HOST", "127.0.0.1"), port=config.port, debug=config.debug)
