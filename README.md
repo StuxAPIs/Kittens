@@ -40,6 +40,8 @@ Or use the bundled dev server, which forces dev-mode config for you:
 dev-server.bat       # Windows
 ```
 
+Add `--lan` to open it from a phone or tablet on the same network: the server then listens on all interfaces instead of `127.0.0.1` only, and prints the addresses to open (usually the `192.168.x.x` one). In dev mode, the app's links then use that address too.
+
 ## Deploying
 
 Merging to `main` deploys automatically. Once CI (`.github/workflows/ci.yml`) passes on the push,
@@ -78,7 +80,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 This project uses [Date Versioning](https://datevers.ing): each release is numbered by its UTC release date as `YY.MM.DD` (for example `26.10.23`), with `-1`, `-2`… for later releases the same day. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 
-Releases are committed and tagged on the `test` branch and reach `main` through a pull request from `test`, which needs CI to pass and is reviewed and merged by Leo; see [Branches](CONTRIBUTING.md#branches).
+Releases are committed and tagged on the `test` branch, then go live through two pull requests: `test` into `staging`, then `staging` into `main`. Each needs CI to pass and is reviewed and merged by Leo; see [Branches and going live](CONTRIBUTING.md#branches-and-going-live).
 
 ## License
 
